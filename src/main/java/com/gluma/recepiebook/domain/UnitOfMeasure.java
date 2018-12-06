@@ -3,7 +3,7 @@ package com.gluma.recepiebook.domain;
 import javax.persistence.*;
 
 @Entity
-public class UnitMeasure {
+public class UnitOfMeasure {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

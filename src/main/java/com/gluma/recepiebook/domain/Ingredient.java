@@ -14,7 +14,7 @@ public class Ingredient {
     private BigDecimal amount;
 
     @OneToOne(fetch = FetchType.EAGER)
-    private UnitMeasure unitMeasure;
+    private UnitOfMeasure unitMeasure;
 
     @ManyToOne //nie uzywamy tu cascadu bo nie chcemy zeby po usunieciu skladnika, usuwalo tez recepture
     private Recipe recipe;
