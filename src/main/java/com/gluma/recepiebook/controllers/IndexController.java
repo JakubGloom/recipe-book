@@ -1,14 +1,24 @@
 package com.gluma.recepiebook.controllers;
 
+import com.gluma.recepiebook.services.RecipeService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class IndexController {
 
+    private final RecipeService recipeService;
+
+    public IndexController(RecipeService recipeService) {
+        this.recipeService = recipeService;
+    }
+
     @RequestMapping({"","/","/index"})
-    public String getIndexPage(){
-        System.out.println("say 1234");
+    public String getIndexPage(Model model){
+
+        model.addAttribute("recipes", recipeService.getRecipes());
+
         return "index";
     }
 }
