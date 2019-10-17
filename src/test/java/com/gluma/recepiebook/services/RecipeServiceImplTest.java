@@ -2,19 +2,15 @@ package com.gluma.recepiebook.services;
 
 import com.gluma.recepiebook.domain.Recipe;
 import com.gluma.recepiebook.repositories.RecipeRepository;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import java.util.HashSet;
 import java.util.Set;
 
-import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-
+import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 
 public class RecipeServiceImplTest {
 
@@ -31,20 +27,18 @@ public class RecipeServiceImplTest {
     }
 
     @Test
-    public void getRecipes() throws Exception {
-
-        //setup recipe data
+    public void getRecipes() {
         Recipe recipe = new Recipe();
-        HashSet recipesData = new HashSet();
-        recipesData.add(recipe);
+        HashSet recipeDataSet = new HashSet();
+        recipeDataSet.add(recipe);
 
-        //when .gerRecipes() is called return recipeData
-        when(recipeService.getRecipes()).thenReturn(recipesData);
+        when(recipeRepository.findAll()).thenReturn(recipeDataSet);
 
         Set<Recipe> recipes = recipeService.getRecipes();
-        assertEquals(recipes.size(),1);
 
-        // we are making sure that .findAll() will be called once and only once
-        verify(recipeRepository, times(1)).findAll();
+        assertEquals(recipes.size(),1);
+        verify(recipeRepository, times(1)).findAll(); //verifying if findAll() was called once
+
+
     }
 }

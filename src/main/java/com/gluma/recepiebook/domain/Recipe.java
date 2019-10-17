@@ -33,7 +33,7 @@ public class Recipe {
     @Lob
     private Byte[] image;
 
-    @Enumerated(value = EnumType.STRING) //jezeli wybierzemy .ORNAL, bedzie jako 1,2,3 przy .STRING pojdzie string
+    @Enumerated(value = EnumType.STRING) //jezeli wybierzemy .ORDINAL, bedzie jako 1,2,3 przy .STRING pojdzie string
     private Difficulty difficulty;
 
     @ManyToMany

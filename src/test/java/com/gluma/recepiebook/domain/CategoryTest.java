@@ -11,15 +11,16 @@ public class CategoryTest {
 
     @Before
     public void setUp(){
-        category = new Category();
+        category=new Category();
     }
 
     @Test
     public void getId() {
-        Long idValue = 4L;
-        category.setId(idValue);
+        Long id = 4L;
 
-        assertEquals(idValue,category.getId());
+        category.setId(id);
+
+        assertEquals(id, category.getId());
     }
 
     @Test
@@ -29,5 +30,4 @@ public class CategoryTest {
     @Test
     public void getRecipes() {
     }
-
 }
