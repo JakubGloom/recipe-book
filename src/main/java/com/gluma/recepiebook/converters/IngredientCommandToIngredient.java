@@ -2,6 +2,7 @@ package com.gluma.recepiebook.converters;
 
 import com.gluma.recepiebook.commands.IngredientCommand;
 import com.gluma.recepiebook.domain.Ingredient;
+import lombok.Synchronized;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
@@ -15,6 +16,7 @@ public class IngredientCommandToIngredient implements Converter<IngredientComman
         this.uomConverter = uomConverter;
     }
 
+    @Synchronized
     @Nullable
     @Override
     public Ingredient convert(IngredientCommand source) {

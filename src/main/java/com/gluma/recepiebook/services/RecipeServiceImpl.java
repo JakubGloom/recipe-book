@@ -1,6 +1,8 @@
 package com.gluma.recepiebook.services;
 
 import com.gluma.recepiebook.commands.RecipeCommand;
+import com.gluma.recepiebook.converters.RecipeCommandToRecipe;
+import com.gluma.recepiebook.converters.RecipeToRecipeCommand;
 import com.gluma.recepiebook.domain.Recipe;
 import com.gluma.recepiebook.repositories.RecipeRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -16,13 +18,13 @@ import java.util.Set;
 public class RecipeServiceImpl implements RecipeService {
 
     private final RecipeRepository recipeRepository;
-   // private final RecipeCommandToRecipe recipeCommandToRecipe;
-    //private final RecipeToRecipeCommand recipeToRecipeCommand;
+    private final RecipeCommandToRecipe recipeCommandToRecipe;
+    private final RecipeToRecipeCommand recipeToRecipeCommand;
 
-    public RecipeServiceImpl(RecipeRepository recipeRepository){//, RecipeCommandToRecipe recipeCommandToRecipe, RecipeToRecipeCommand recipeToRecipeCommand) {
+    public RecipeServiceImpl(RecipeRepository recipeRepository, RecipeCommandToRecipe recipeCommandToRecipe, RecipeToRecipeCommand recipeToRecipeCommand) {
         this.recipeRepository = recipeRepository;
-        //this.recipeCommandToRecipe = recipeCommandToRecipe;
-        //this.recipeToRecipeCommand = recipeToRecipeCommand;
+        this.recipeCommandToRecipe = recipeCommandToRecipe;
+        this.recipeToRecipeCommand = recipeToRecipeCommand;
     }
 
     @Override
@@ -62,16 +64,16 @@ public class RecipeServiceImpl implements RecipeService {
     @Override
     @Transactional
     public RecipeCommand findCommandById(Long l) {
-        return null;//recipeToRecipeCommand.convert(findById(l));
+        return recipeToRecipeCommand.convert(findById(l));
     }
 
     @Override
     @Transactional
     public RecipeCommand saveRecipeCommand(RecipeCommand command) {
-        Recipe detachedRecipe = null;//recipeCommandToRecipe.convert(command);
+        Recipe detachedRecipe = recipeCommandToRecipe.convert(command);
 
         Recipe savedRecipe = recipeRepository.save(detachedRecipe);
         log.debug("Saved RecipeId:" + savedRecipe.getId());
-        return null;//recipeToRecipeCommand.convert(savedRecipe);
+        return recipeToRecipeCommand.convert(savedRecipe);
     }
 }
