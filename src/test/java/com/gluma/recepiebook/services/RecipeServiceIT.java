@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest //was @DataJpaTest cannot fin serviceimpl, we need to bring the whole springboot context
+@SpringBootTest //was @DataJpaTest cannot find serviceimpl, we need to bring the whole springboot context
 public class RecipeServiceIT {
 
     public static final String NEW_DESCRIPTION = "New Description";

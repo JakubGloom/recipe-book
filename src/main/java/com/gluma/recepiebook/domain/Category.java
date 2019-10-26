@@ -6,7 +6,8 @@ import javax.persistence.*;
 import java.util.Set;
 
 
-@Data
+@Getter
+@Setter
 @EqualsAndHashCode(exclude = {"recipes"}) //bc we have bidirectional references, it make endless loop
 @Entity
 public class Category {
